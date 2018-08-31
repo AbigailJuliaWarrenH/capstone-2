@@ -9,59 +9,68 @@ use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 
-
-
 require 'paypal/start.php';
 
-
 $payer = new Payer();
-$payer->setPaymentMethod('paypal');
+$payer->setPaymentMethod('paypal'); 
 
+session_start();
+require 'connect.php';
 
-$item = new Item();
-$item->setName('test product')
-	->setCurrency('PHP')
-	->setQuantity(2)
-	->setPrice(100);
+$items = [];
+$total = 0;
+foreach ($_SESSION['cart'] as $id => $quantity) {
+	$sql = "SELECT * FROM items WHERE id = $id";
+	$result = mysqli_fetch_assoc(mysqli_query($conn,$sql));
+	extract($result);
+	
+	$product = $name;
+	$subtotal = $price*$quantity;
+	$total += $subtotal;
 
+	$item = new Item();
+	$item->setName($product)
+		->setCurrency('PHP')
+		->setQuantity($quantity)
+		->setPrice($price);
+
+	$items[] = $item;
+}
 $item_list = new ItemList();
-$item_list->setItems([$item]);
+$item_list->setItems($items);
+
+// $details = new Details();
+// $details
 
 $amount = new Amount();
 $amount->setCurrency('PHP')
-	->setTotal(200);
-
-// $details = taxes, shipping fee 
+	->setTotal($total);
 
 $transaction = new Transaction();
 $transaction
 	->setAmount($amount)
 	->setItemList($item_list)
-	->setDescription('payment for JovitaBellezaManila purchase')
-	->setInvoiceNumber(uniqid('JovitaBellezaManila'));	
+	->setDescription('payment for Jovita Belleza Manila purchase')
+	->setInvoiceNumber(uniqid());
 
 $redirectUrls = new RedirectUrls();
-$redirectUrls
-		->setReturnUrl(SITE_URL.'/controllers/pay.php?success=true')
-		->setCancelUrl(SITE_URL.'/controllers/pay.php?success=false');
+$redirectUrls->setReturnUrl(SITE_URL.'/controllers/pay.php?success=true')
+	->setCancelUrl(SITE_URL.'/pay.php?success=false');
 
 $payment = new Payment();
 $payment->setIntent('sale')
 	->setPayer($payer)
 	->setRedirectUrls($redirectUrls)
-	->setTransactions([$transaction]);
+	->setTransactions([$transaction]); 
 
-try{
+try {
 	$payment->create($paypal);
-
 } catch(Exception $e) {
-	die($e->getData());
+	die($e);
 }
 
-$approvalUrl= $payment->getApprovalLink();
+$approvalUrl = $payment->getApprovalLink();
 
-header('location: '.$approvalUrl);
+header('location: '.$approvalUrl); 
 
-
-
- ?>
+?>

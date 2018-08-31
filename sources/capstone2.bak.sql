@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2018 at 10:26 AM
+-- Generation Time: Aug 31, 2018 at 09:01 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.2
 
@@ -109,21 +109,12 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `transaction_code` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `contact_number` varchar(255) DEFAULT NULL,
+  `contact_number` varchar(255) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
-  `status_id` int(11) NOT NULL DEFAULT '1',
+  `status_id` int(11) NOT NULL,
   `payment_method_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `transaction_code`, `address`, `contact_number`, `date_created`, `user_id`, `status_id`, `payment_method_id`) VALUES
-(1, '5b88ef2eae088', '1 Main St San Jose CA 95131 US', NULL, '2018-08-31 07:33:38', 2, 1, 2),
-(2, '5b88f0036633b', '1 Main St San Jose CA 95131 US', NULL, '2018-08-31 07:37:13', 2, 1, 2),
-(3, '5b88f1a5a6b53', '1 Main St San Jose CA 95131 US', NULL, '2018-08-31 07:44:01', 3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -138,20 +129,6 @@ CREATE TABLE `order_details` (
   `order_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `order_details`
---
-
-INSERT INTO `order_details` (`id`, `item_id`, `quantity`, `order_id`) VALUES
-(1, 14, 10, 1),
-(2, 9, 2, 2),
-(3, 10, 1, 2),
-(4, 13, 1, 2),
-(5, 14, 3, 2),
-(6, 9, 2, 3),
-(7, 13, 2, 3),
-(8, 14, 3, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -162,14 +139,6 @@ CREATE TABLE `payment_methods` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `payment_methods`
---
-
-INSERT INTO `payment_methods` (`id`, `name`) VALUES
-(1, 'C.O.D.'),
-(2, 'PayPal');
 
 -- --------------------------------------------------------
 
@@ -201,15 +170,6 @@ CREATE TABLE `statuss` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `statuss`
---
-
-INSERT INTO `statuss` (`id`, `name`) VALUES
-(3, 'Delivered'),
-(2, 'In Transit'),
-(1, 'Processing');
-
 -- --------------------------------------------------------
 
 --
@@ -229,8 +189,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role_id`) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1),
-(2, 'user1', 'b3daa77b4c04a9551b8781d03191fe098f325e67', 2),
-(3, 'user', '12dea96fec20593566ab75692c9949596833adc9', 2);
+(2, 'user1', 'b3daa77b4c04a9551b8781d03191fe098f325e67', 2);
 
 -- --------------------------------------------------------
 
@@ -338,17 +297,17 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `payment_methods`
 --
 ALTER TABLE `payment_methods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -358,12 +317,12 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `statuss`
 --
 ALTER TABLE `statuss`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_details`
 --

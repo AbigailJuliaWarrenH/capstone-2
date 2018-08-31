@@ -40,7 +40,10 @@
       <li class="nav-item">
         <a class="nav-link" href="productlist.php">List of Products</a>
       </li>
-      <?php if (!(isset($_SESSION['logged_in']) && $_SESSION['logged_in']['role_id'] == 1)): ?>
+      <?php if ((isset($_SESSION['logged_in']) && $_SESSION['logged_in']['role_id'] == 1)): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="orders.php">Orders</a>
+        </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="cart.php"><i class="fas fa-shopping-bag">Checkout<span class="badge badge-light">4</i></a>
         </li> -->
@@ -63,20 +66,23 @@
     </ul>
 
   </div>
-  <span class="nav-item" >
-          <a class="nav-link" href="cart.php"><i class="fas fa-shopping-bag" id="bag">Checkout
-            <span id="cart-count">
-              <?php
-              if (isset($_SESSION['cart'])): // if cart exists
-                $count = array_sum($_SESSION['cart']);
-                if ($count > 0) { // if cart is not empty ?>
-                  <span class="badge badge-dark">
-                      <?= isset($_SESSION['cart']) ? $count: '';?>
-                  </span>
-                <?php } ?>
-              <?php endif ?>
-            </span>
-          </i></a>
+  <?php if (!(isset($_SESSION['logged_in']) && $_SESSION['logged_in']['role_id'] == 1)): ?>
+    <span class="nav-item" >
+            <a class="nav-link" href="cart.php"><i class="fas fa-shopping-bag" id="bag">Checkout
+              <span id="cart-count">
+                <?php
+                if (isset($_SESSION['cart'])): // if cart exists
+                  $count = array_sum($_SESSION['cart']);
+                  if ($count > 0) { // if cart is not empty ?>
+                    <span class="badge badge-dark">
+                        <?= isset($_SESSION['cart']) ? $count: '';?>
+                    </span>
+                  <?php } ?>
+                <?php endif ?>
+              </span>
+            </i></a>
+    </span>
+  <?php endif ?>
 </nav>
 </div>	
 <!-- nav end -->
@@ -128,7 +134,16 @@
 } ?>
 
 <div class="jumbotron container jumbofont">
-  <h1 class="display-4">Hello, Guest!</h1>
+  <h1 class="display-4">Hello, <?php if (!isset($_SESSION['logged_in'])) { // not logged in
+    echo "Guest";
+  } else { // logged in
+    if ($_SESSION['logged_in']['role_id'] == 1) { // admin
+      echo "Admin";
+    } else { // regular user
+      echo $_SESSION['logged_in']['username'];
+    }
+  }
+   ?>!</h1>
   <p class="lead jumbtext">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   <hr class="my-4">
   <p class="jumbtext">It uses utility classes for typography and spacing to space content out within the larger container.</p>
