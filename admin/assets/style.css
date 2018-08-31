@@ -1,0 +1,40 @@
+.jumbotron{
+	margin-top: 20px;
+	background-image: url(images/jumbotron.jpeg);
+	background-size: cover;
+	opacity: 0.8;
+	 
+
+}
+
+h1, p {
+	color: black;
+
+}
+
+label {
+	/*display: inline-block; 
+    width: 500px;
+    margin-left: 10px;
+    margin-left: 500px;
+    margin-right: auto;*/
+
+}
+
+.countdownMarquee{
+	background-color: orange;
+	
+
+}
+
+.container{
+	size: 500px;
+}
+
+#sign{
+	background-color: #f48642;
+}
+
+.navbar{
+	background-color: green;
+}

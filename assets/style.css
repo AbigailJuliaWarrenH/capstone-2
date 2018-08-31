@@ -1,0 +1,65 @@
+.jumbotron{
+	margin-top: 20px;
+	background-image: url(images/jumbotron.jpeg);
+	background-size: cover;
+	opacity: 0.8;
+	 
+
+}
+
+h1, .jumbtext {
+	color: white;
+	font-family: 'Arizonia', cursive;
+}
+
+label {
+	/*display: inline-block; 
+    width: 500px;
+    margin-left: 10px;
+    margin-left: 500px;
+    margin-right: auto;*/
+
+}
+
+.countdownMarquee{
+	background-color: #f7a859; 
+	/*background-color: #ef8010; */
+	
+
+}
+
+.container{
+	size: 500px;
+}
+
+#sign{
+	background-color: #f48642;
+}
+
+.navcolor{
+	background-color: #42f4b3;
+}
+
+.jumbofont{
+	
+}
+
+#logo{
+	font-family: 'Leckerli One', cursive;
+}
+
+.btn-empty-cart {
+	background-color: #f7a859;
+}
+
+.btn-remove-from-cart{
+	background-color: #f7a859;
+}
+
+.btn-proceed{
+	background-color: #3bdba0;
+}
+
+.btn-update{
+	background-color: #3bdba0;
+}

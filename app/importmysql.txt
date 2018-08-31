@@ -1,0 +1,7 @@
+* importing an sql file to mariadb
+
+> mysql -h localhost -u root db_name < file.sql
+
+* exporting a database to an sql file:
+
+>mysqldump -h localhost -u root db_name > file.sql
