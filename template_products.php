@@ -9,6 +9,8 @@
   <link rel="stylesheet" type="text/css" href="assets/style.css">
   <!-- font -->
   <link href="https://fonts.googleapis.com/css?family=Arizonia|Leckerli+One" rel="stylesheet">
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 
 <body>
@@ -39,9 +41,9 @@
         <a class="nav-link" href="productlist.php">List of Products</a>
       </li>
       <?php if (!(isset($_SESSION['logged_in']) && $_SESSION['logged_in']['role_id'] == 1)): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php">Cart</a>
-        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="cart.php"><i class="fas fa-shopping-bag">Checkout<span class="badge badge-light">4</i></a>
+        </li> -->
       <?php endif ?>
       <?php if (isset($_SESSION['logged_in'])): ?>
         <li class="nav-item">
@@ -59,7 +61,22 @@
         </div>
       </li> -->
     </ul>
+
   </div>
+  <span class="nav-item" >
+          <a class="nav-link" href="cart.php"><i class="fas fa-shopping-bag" id="bag">Checkout
+            <span id="cart-count">
+              <?php
+              if (isset($_SESSION['cart'])): // if cart exists
+                $count = array_sum($_SESSION['cart']);
+                if ($count > 0) { // if cart is not empty ?>
+                  <span class="badge badge-dark">
+                      <?= isset($_SESSION['cart']) ? $count: '';?>
+                  </span>
+                <?php } ?>
+              <?php endif ?>
+            </span>
+          </i></a>
 </nav>
 </div>	
 <!-- nav end -->

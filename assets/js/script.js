@@ -19,6 +19,12 @@ $('#order').change(function() {
 	});
 });
 
+const updateCartBadge = function() {
+	$.ajax({ url: 'controllers/update_cart_badge.php' }).done(function(data) {
+		$('#cart-count').html(data);
+	});
+};
+
 $('.form-add-to-cart').submit(function() {
 	const id = $(this).data('id');
 	const quantity = Number($('#quantity'+id).val());
@@ -33,6 +39,7 @@ $('.form-add-to-cart').submit(function() {
 				// do this when you are done passing the data to the server
 				console.log('Added to cart successfully!');
 				// console.log(data);
+				updateCartBadge();
 			});
 	}
 	return false;
@@ -146,4 +153,22 @@ $('.admin-btn-delete-item').click(function() {
 			location.reload();
 		}
 	});
+});
+
+$('.admin-btn-edit-item').click(function() {
+	const id = $(this).data('id');
+	$.ajax({
+		url: 'controllers/get_item_data.php',
+		data: { id: id },
+		method: 'post',
+		success: function(data) {
+			$('#form-edit-item-modal-body').html(data);
+		}
+	});
+});
+
+$('#btn-edit-item').click(function() {
+	// tapos na si user mag-edit
+	// save changes
+	$('#form-edit-item-modal-body form').submit();
 });

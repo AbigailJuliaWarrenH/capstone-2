@@ -122,22 +122,22 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Jovita Belleza Manila</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
-        ...
-      </div>
+		<p><strong>Your Total Bill is</strong> Php <?php echo number_format($total,2) ?></p>
+	  </div>
       <div class="modal-footer">
+      	<p>How would you like to process your payment?</p>
       	 <?php 
 			echo "<a href='controllers/checkout.php' class='btn btn-primary'>Pay with PayPal </a>";
 
   				?>	
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-primary">Cash on Delivery</button>
       </div>
     </div>
   </div>

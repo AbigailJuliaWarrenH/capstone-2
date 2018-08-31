@@ -20,6 +20,9 @@
 
 		    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 		      <div class="card-body">
+			 		<?php if ((isset($_SESSION['logged_in']) && $_SESSION['logged_in']['role_id'] == 1)): ?>
+			 			<a class="btn btn-primary" href="add_item.php" role="button">Add item</a>
+			 		<?php endif ?>
 				 	<div>
 				 		<div>
 							<label for="sort">Sort by:</label>
@@ -73,6 +76,30 @@
 		</div> <!-- end left col -->
  		<div class="col-lg-9">
 		 	<div class="row" id="productlist">
+
+		 		<?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']['role_id'] == 1):
+				 			// admin is logged in ?>
+					<!-- Modal -->
+					<div class="modal fade" id="form-edit-item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body" id="form-edit-item-modal-body">
+					        ...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button id="btn-edit-item" type="button" class="btn btn-primary">Save changes</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				<?php endif ?>
 			 	<?php
 			 		$sql = "SELECT * FROM items";
 			 		$items = mysqli_query($conn, $sql);
@@ -93,7 +120,9 @@
 
 				 			<?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']['role_id'] == 1):
 				 			// admin is logged in ?>
-							    <button data-id=<?php echo $id ?> class="admin-btn-edit-item btn btn-primary">Edit</button>
+						 		<!-- Button trigger modal -->
+							    <button data-id=<?php echo $id ?> class="admin-btn-edit-item btn btn-primary" data-toggle="modal" data-target="#form-edit-item">Edit</button>
+
 							    <button data-id=<?php echo $id ?> class="admin-btn-delete-item btn btn-danger">Delete</button>
 					 		<?php else: ?>
 							    <form data-id=<?php echo $id ?> class="form-add-to-cart" action="controllers/add_to_cart.php" method="post">
