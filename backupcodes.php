@@ -62,23 +62,14 @@
 	        	
 	        	<td>
 					    <!-- Modal Trigger -->
-						  <!-- <a class="modal-trigger" href="#view-order-details" data-target="#exampleModal" data-order-id=<?php echo $order['id']; ?>>View details</a> -->
-
+						  <!-- <a class="modal-trigger" href="#view-order-details" data-target="#exampleModal" data-order-id=<?php echo $order['id']; ?>>View details</a>
+ -->
 						  	<!-- Button trigger modal -->
 
-<button type="button" class="btn btn-primary modal-trigger" data-toggle="modal" data-target="#exampleModal" data-order-id=<?php echo $order['id']; ?>>
+<a type="button" class="btn btn-primary modal-trigger" href="#view-order-details" data-toggle="modal" data-target="#exampleModal" data-order-id=<?php echo $order['id']; ?>>
   View details
- </button>
+ </a>
 
-		        		
-						  
-	        	</td>
-	        </tr>
-      	<?php endforeach ?>
-			
-			</tr>
-		</tbody>
-	</table>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -99,7 +90,7 @@
       <th scope="col">Orders</th>
     </tr>
   </thead>
-  <tbody>
+  <!-- <tbody>
     <tr>
       <th scope="row">1</th>
       <td>Mark</td>
@@ -127,6 +118,15 @@
     </div>
   </div>
 </div>
+		        		
+						  
+	        	</td>
+	        </tr>
+      	<?php endforeach ?>
+			
+			</tr>
+		</tbody>
+	</table>
 <?php } ?>
 
 
@@ -188,8 +188,3 @@
 
 // require 'template.php';
 // ?>
-
-
-
-
-

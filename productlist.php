@@ -13,7 +13,7 @@
 		    <div class="card-header" id="headingOne">
 		      <h5 class="mb-0">
 		        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-		          Filter and Sort
+		          Sort and Filter
 		        </button>
 		      </h5>
 		    </div>

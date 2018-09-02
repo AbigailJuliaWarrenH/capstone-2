@@ -28,7 +28,7 @@
 <div>
   
 <nav class=" navbar navbar-expand-lg navbar-light navcolor nav justify-content-center">
-  <center><a class="navbar-brand" id="logo" href="index.php">Jovita Belleza<br>Manila</a></center>
+  <center><a class="navbar-brand" id="logo" href="index.php"><h2>Jovita</h2> Belleza Manila</a></center>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -144,7 +144,8 @@
     }
   }
    ?>!</h1>
-  <p class="lead jumbtext">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <p class="lead jumbtext">"Beauty is power; a smile is its sword." -John Ray
+</p>
   <hr class="my-4">
   <p class="jumbtext">It uses utility classes for typography and spacing to space content out within the larger container.</p>
 
@@ -202,6 +203,12 @@
 		
 
 	</div>
+
+  <footer>
+    <div >
+      <img src="assets/images/paypal.jpg"  class="payp">
+    </div>
+  </footer>
 
 </div>
 

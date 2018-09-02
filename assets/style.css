@@ -40,6 +40,10 @@ label {
 	background-color: #42f4b3;
 }
 
+footer{
+	background-color: #42f4b3;
+}
+
 .jumbofont{
 	
 }
@@ -66,4 +70,9 @@ label {
 
 #bag{
 	color:black;
+} 
+
+.payp{
+	height: 50px;
+	width: 50px;
 }

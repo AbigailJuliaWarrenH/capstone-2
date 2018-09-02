@@ -8,6 +8,7 @@
 		$_SESSION['category'] = $_GET['category'];
 	}
 
+
 	if (isset($_GET['sort'])) {
 		$_SESSION['sort'] = $_GET['sort'];
 	}
@@ -17,9 +18,15 @@
 	}
 
 	$filter = '';
-	$filter .= $_SESSION['category'] ? " WHERE category_id = ".$_SESSION['category'] : "";
-	$filter .= " ORDER BY ".$sort_array[$_SESSION['sort']];
-	$filter .= $order_array[$_SESSION['order']] == 'descending' ? " DESC" : "";
+	if (isset($_SESSION['category'])) {
+		$filter .= $_SESSION['category'] ? " WHERE category_id = ".$_SESSION['category'] : "";
+	}
+	if (isset($_SESSION['sort'])) {
+		$filter .= " ORDER BY ".$sort_array[$_SESSION['sort']];
+	}
+	if (isset($_SESSION['order'])) {
+		$filter .= $order_array[$_SESSION['order']] == 'descending' ? " DESC" : "";
+	}
 
 	// echo $filter;
 	
@@ -41,3 +48,7 @@
 		  </div>
 		</div>
 <?php } ?>
+
+
+
+

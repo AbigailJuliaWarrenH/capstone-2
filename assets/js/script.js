@@ -172,3 +172,15 @@ $('#btn-edit-item').click(function() {
 	// save changes
 	$('#form-edit-item-modal-body form').submit();
 });
+
+$('[data-target="#exampleModal"]').click(function() {
+	const orderID = $(this).data('order-id');
+	$.ajax({
+		url: 'controllers/admin_view_order_details.php',
+		data: { order_id: orderID },
+		method: 'post',
+		success: function(data) {
+			$('#orderinfo').html(data);
+		}
+	});
+});

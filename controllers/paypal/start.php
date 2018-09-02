@@ -1,7 +1,7 @@
 <?php 
 
 require '../vendor/autoload.php';
-define('SITE_URL','http://localhost/caps2/');
+define('SITE_URL','http://localhost/caps2/caps2');
 $paypal = new \PayPal\Rest\ApiContext(
 new \PayPal\Auth\OAuthTokenCredential(
 'AVIrIWuHO7NufhzZaoP69RhOEWaS9AR850xHxIjVU8RQzkw4AEmb5AqtffZpW9Tbv7sCw7tBkOyZkK4r',

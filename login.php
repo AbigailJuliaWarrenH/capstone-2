@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
 	<form action="controllers/authenticate.php" method="POST">
 		<div class="form-group">
